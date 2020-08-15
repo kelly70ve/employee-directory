@@ -10,8 +10,15 @@ var dateFormat = require('dateformat');
 
 class App extends Component {
 
+  // constructor() {
+  //   super();
+  //   this.handleInputChange = this.handleInputChange.bind(this);
+  //   this.handleSearch = this.handleSearch.bind(this);
+  // }
+
   state = {
-    employees: []
+    employees: [],
+    search: ""
   }
 
   componentDidMount() {
@@ -29,27 +36,54 @@ class App extends Component {
         };
 
       })
-
-      // empSimp.filter(employee => {
-      //   employee.name.toLowerCase().split('')
-
-      // })
       
       this.setState({ employees: empSimp })
     })
     .catch(err => console.log(err));
   }
 
+  handleInputChange = event => {
+    // Getting the value and name of the input which triggered the change
+    let value = event.target.value;
+    const name = event.target.name;
+
+    // Updating the input's state
+    this.setState({
+      [name]: value
+    });
+
+    // if (value !== "" ) {
+    //   let empSearch = this.state.employees.filter(employee => {
+    //     employee.name.substring(0, value.length - 1) === value
+    //   });
+
+    //   this.setState({ employees: empSearch })
+    // } 
+  };
+
+  // handleSearch = () => {
+  //   if (this.state.search !== "" ) {
+  //     let empSearch = this.state.employees.filter(employee => {
+  //       employee.name.substring(0, this.state.search.length - 1) === this.state.search
+  //     });
+
+  //     this.setState({ employees: empSearch })
+  //   } 
+  // }
 
   render() {
     return (
       <div>
         <Navbar />
         <Wrapper>
-          <Input />
-          <Table
-          employees = {this.state.employees} 
+          <Input 
+            value={this.state.search}
+            name="search"
+            onChange={this.handleInputChange}
+            type="text"
           />
+          <Table
+          employees = {this.state.employees} />
         </Wrapper>
       </div>
     );
