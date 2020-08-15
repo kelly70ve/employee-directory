@@ -1,7 +1,7 @@
 import React from "react";
 import Tbody from "../Tbody";
 
-function Table() {
+function Table(props) {
   return (
     <table className="table table-hover mt-4 text-center">
     <thead className="bg-dark text-white shadow-sm">
@@ -13,7 +13,9 @@ function Table() {
         <th scope="col">DOB</th>
       </tr>
     </thead>
-      <Tbody />
+      <Tbody
+      employees = {props.employees}
+      />
     </table>
   );
 }
