@@ -8,16 +8,6 @@ import './App.css';
 
 class App extends Component {
 
-  state = {
-    employees: []
-  }
-
-  componentDidMount() {
-    API.search()
-    .then(res => this.setState({ employees: res.data.results }))
-    .catch(err => console.log(err));
-  }
-
   render() {
     return (
       <div>

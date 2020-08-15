@@ -1,13 +1,13 @@
 import React from "react";
 
-function Trow() {
+function Trow(props) {
   return (
     <tr>
-      <th>1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
+      <td><img src={props.image} /></td>
+      <td>{props.name}</td>
+      <td>{props.phone}</td>
+      <td><a href={'mailto:' + props.email}>{props.email}</a></td>
+      <td>{props.dob}</td>
     </tr>
   );
 }
