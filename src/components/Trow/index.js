@@ -1,6 +1,6 @@
 import React from "react";
 
-function Tbody() {
+function Trow() {
   return (
     <tr>
       <th>1</th>
@@ -12,4 +12,4 @@ function Tbody() {
   );
 }
 
-export default Tbody;
+export default Trow;
