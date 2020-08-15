@@ -2,6 +2,8 @@ import React, { Component }  from 'react';
 import Trow from "../Trow";
 import API from "../../utils/API";
 
+var dateFormat = require('dateformat');
+
 class Tbody extends Component {
 
   state = {
@@ -19,7 +21,7 @@ class Tbody extends Component {
           name: `${employee.name.first} ${employee.name.last}`,
           phone: employee.phone,
           email: employee.email,
-          dob: employee.dob.date
+          dob: dateFormat(employee.dob.date, "mm-dd-yy")
         };
 
       })
