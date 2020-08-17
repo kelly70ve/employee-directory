@@ -10,14 +10,9 @@ var dateFormat = require('dateformat');
 
 class App extends Component {
 
-  // constructor() {
-  //   super();
-  //   this.handleInputChange = this.handleInputChange.bind(this);
-  //   this.handleSearch = this.handleSearch.bind(this);
-  // }
-
   state = {
     employees: [],
+    allEmployees: [],
     search: ""
   }
 
@@ -36,7 +31,7 @@ class App extends Component {
         };
 
       })
-      
+      this.setState({ allEmployees: empSimp })
       this.setState({ employees: empSimp })
     })
     .catch(err => console.log(err));
@@ -52,24 +47,19 @@ class App extends Component {
       [name]: value
     });
 
-    // if (value !== "" ) {
-    //   let empSearch = this.state.employees.filter(employee => {
-    //     employee.name.substring(0, value.length - 1) === value
-    //   });
 
-    //   this.setState({ employees: empSearch })
-    // } 
+    // Live Search
+    if (value !== "" ) {
+      let empSearch = this.state.allEmployees.filter(employee => {
+
+        return employee.name.toLowerCase().substring(0, value.length) === value.toLowerCase();
+      });
+
+      this.setState({ employees: empSearch })
+    } else {
+      this.setState({ employees: this.state.allEmployees })
+    }
   };
-
-  // handleSearch = () => {
-  //   if (this.state.search !== "" ) {
-  //     let empSearch = this.state.employees.filter(employee => {
-  //       employee.name.substring(0, this.state.search.length - 1) === this.state.search
-  //     });
-
-  //     this.setState({ employees: empSearch })
-  //   } 
-  // }
 
   render() {
     return (
