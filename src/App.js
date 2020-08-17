@@ -51,10 +51,13 @@ class App extends Component {
     // Live Search
     if (value !== "" ) {
       let empSearch = this.state.allEmployees.filter(employee => {
-
-        return employee.name.toLowerCase().substring(0, value.length) === value.toLowerCase();
+        if (
+          employee.name.includes(value) || 
+          employee.phone.includes(value) ||
+          employee.email.includes(value) || 
+          employee.dob.includes(value) 
+        ) { return employee }
       });
-
       this.setState({ employees: empSearch })
     } else {
       this.setState({ employees: this.state.allEmployees })
